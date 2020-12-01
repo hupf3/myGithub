@@ -74,11 +74,12 @@
             <Col span="16" style="background:white; height:60px">
                 <!-- 菜单 -->
                 <Row style="width:600px">
-                    <Menu mode="horizontal" active-name="1">
+                    <Menu mode="horizontal" active-name="1" @on-select="handleChange">
                         <MenuItem name="1">
                             <Icon type="md-book" />
                             Overview
                         </MenuItem>
+                        <!-- <MenuItem name="2" to="/Repositories"> -->
                         <MenuItem name="2">
                             <Icon type="ios-folder-outline" />
                             Repositories
@@ -94,7 +95,7 @@
                     </Menu>
                 </Row>
                 <!-- 选择展示6个仓库 -->
-                <Row style="text-align:left">
+                <Row style="text-align:left" v-if="isOverview">
                     <br/>
                     <h4>Popular repositories</h4>
                     <Col span="12">
@@ -136,10 +137,91 @@
                         </Card>
                     </Col>
                 </Row>
+                <!-- 展示仓库 -->
+                <Row style="text-align:left" v-if="isRepositories">
+                    
+                </Row>
+                <!-- 展示项目 -->
+                <Row style="text-align:left" v-if="isProjects">
+                    <br/>
+                    <!-- 搜索框 --> 
+                    <Input suffix="ios-search" placeholder="Search all projects" style="width: 500px;height:35px" />
+                    {{"&nbsp"}} {{"&nbsp"}} {{"&nbsp"}}
+                    <Button type="success" style="text-align:right">New Project</Button>
+                    <br/><br/>
+                    <Card :bordered="true" style="width:670px;text-align:center">
+                        <p slot="title" style="text-align:left"><Icon type="ios-list-box-outline" /> 0 Open <Icon type="md-checkmark" /> 0 Closed</p>
+                        <h3>You don't have any projects yet.</h3>
+                        <br/>
+                        <Button type="success" style="text-align:right">New Project</Button>
+                        <br/> <br/>
+                        <a href="https://docs.github.com/articles/about-project-boards">Learn More</a>
+                    </Card>
+                </Row>
+                <!-- 展示packages -->
+                <Row style="text-align:center" v-if="isPackages">
+                    <br/>
+                    <img src="../../static/pic1.png" style="width:80px;height:80px">
+                    <h1>Get started with GitHub Packages</h1>
+                    <p>Safely publish packages, store your packages alongside your code, and share your packages privately with your team.</p>
+                    <br/>
+                    <h2 style="color:#596068">Choose an ecosystem</h2>
+                    <Col span="8">
+                        <Card :bordered="true" style="width:300px;text-align:left">
+                            <h2><img src="../../static/docker.png" style="width:25px;height:25px"> Docker</h2>
+                            <p style="color:#596068">A software platform used for building applications based on containers — small and lightweight execution environments.</p>
+                            <br/>
+                            <Button to="https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-docker-for-use-with-github-packages">Learn More</Button>
+                        </Card>
+                        <br/>
+                        <Card :bordered="true" style="width:300px;text-align:left">
+                            <h2><img src="../../static/pic4.png" style="width:25px;height:25px"> RubyGems</h2>
+                            <p style="color:#596068">A standard format for distributing Ruby programs and libraries used for the Ruby programming language.</p>
+                            <br/>
+                            <Button to="https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-rubygems-for-use-with-github-packages">Learn More</Button>
+                        </Card>
+                    </Col>
+                    <Col span="8">
+                        <Card :bordered="true" style="width:300px;text-align:left">
+                            <h2><img src="../../static/pic2.png" style="width:25px;height:25px"> Apache Maven</h2>
+                            <p style="color:#596068">A default package manager used for the Java programming language and the Java runtime environment.</p>
+                            <br/>
+                            <Button to="https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages">Learn More</Button>
+                        </Card>
+                        <br/>
+                        <Card :bordered="true" style="width:300px;text-align:left">
+                            <h2><img src="../../static/pic5.png" style="width:25px;height:25px"> npm</h2>
+                            <p style="color:#596068">A package manager for JavaScript, included with Node.js. npm makes it easy for developers to share and reuse code.</p>
+                            <br/>
+                            <Button to="https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages">Learn More</Button>
+                        </Card>
+                    </Col>
+                    <Col span="8">
+                        <Card :bordered="true" style="width:300px;text-align:left">
+                            <h2><img src="../../static/pic3.png" style="width:25px;height:25px"> NuGet</h2>
+                            <p style="color:#596068">A free and open source package manager used for the Microsoft development platforms including .NET.</p>
+                            <br/>
+                            <Button to="https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-dotnet-cli-for-use-with-github-packages">Learn More</Button>
+                        </Card>
+                        <br/>
+                        <Card :bordered="true" style="width:300px;text-align:left">
+                            <h2><img src="../../static/docker.png" style="width:25px;height:25px"> Containers</h2>
+                            <p style="color:#596068">A single place for your team to manage Docker images and decide who can see and access your images.</p>
+                            <br/>
+                            <Button to="https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry">Learn More</Button>
+                        </Card>
+                        <br/>
+                    </Col>
+               </Row>
             </Col>
         </Row>
+        <!-- 底部 -->
+        <Row>
+            <Divider />
+            
+            <p><Icon type="logo-github"/> © 2020 GitHub, Inc.</p>
+        </Row>
     </div>
-    
 </template>
 <script>
     export default {
@@ -152,10 +234,15 @@
         data () {
             return {
                 user:{},
-                repos:[]
+                repos:[],
+                isOverview:true,
+                isRepositories:false,
+                isProjects:false,
+                isPackages:false
             }
         },
         methods:{
+            // 获取用户信息接口
             getUser:function() {
                 this.axios.get('/hupf3')
                     .then(res => {
@@ -164,6 +251,7 @@
                         // console.log(this.user.avatar_url)
                     })
             },
+            // 获取仓库接口
             getRepos:function() {
                 this.axios.get('/hupf3/repos')
                     .then(res => {
@@ -171,6 +259,30 @@
                         this.repos = result
                         // console.log(result)
                     })
+            },
+            // 切换页面
+            handleChange(params) {
+                if (params == 1){
+                    this.isOverview = true
+                    this.isRepositories = false
+                    this.isProjects = false
+                    this.isPackages = false
+                }else if (params == 2){
+                    this.isRepositories = true
+                    this.isOverview = false
+                    this.isProjects = false
+                    this.isPackages = false
+                }else if (params == 3){
+                    this.isProjects = true
+                    this.isOverview = false
+                    this.isRepositories = false
+                    this.isPackages = false
+                }else if (params == 4){
+                    this.isPackages = true
+                    this.isOverview = false
+                    this.isProjects = false
+                    this.isRepositories = false
+                }
             }
         }
     }
