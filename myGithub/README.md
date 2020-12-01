@@ -1,4 +1,4 @@
-# github_pro
+# myGithub
 
 > A Vue.js project
 
