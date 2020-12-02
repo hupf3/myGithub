@@ -13,10 +13,10 @@
             </Col>
             <!-- 四个功能选项框 -->
             <Col style="text-align:left" span="8">
-                <Button type="text" ghost>Pull requests</Button>
-                <Button type="text" ghost>Issues</Button>
-                <Button type="text" ghost>Marketplace</Button>
-                <Button type="text" ghost>Explore</Button>
+                <Button type="text" ghost to="https://github.com/pulls">Pull requests</Button>
+                <Button type="text" ghost to="https://github.com/issues">Issues</Button>
+                <Button type="text" ghost to="https://github.com/marketplace">Marketplace</Button>
+                <Button type="text" ghost to="https://github.com/explore">Explore</Button>
             </Col>
             <Col style="text-align:right" span="9">
                 <Button icon="md-bulb"></Button>
@@ -139,7 +139,64 @@
                 </Row>
                 <!-- 展示仓库 -->
                 <Row style="text-align:left" v-if="isRepositories">
-                    
+                    <br/>
+                    <!-- 头部搜索框等 --> 
+                    <Input suffix="ios-search" placeholder="Find a repository..." style="width: 500px;height:35px" />
+                    <Dropdown style="margin-left: 15px">
+                        <Button type="default">
+                            Type: All
+                            <Icon type="ios-arrow-down"></Icon>
+                        </Button>
+                        <DropdownMenu slot="list">
+                            <DropdownItem>All</DropdownItem>
+                            <DropdownItem>Public</DropdownItem>
+                            <DropdownItem>Private</DropdownItem>
+                            <DropdownItem>Sources</DropdownItem>
+                            <DropdownItem>Forks</DropdownItem>
+                            <DropdownItem>Archived</DropdownItem>
+                            <DropdownItem>Mirrors</DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+                    <Dropdown style="margin-left: 10px">
+                        <Button type="default">
+                            Type: All
+                            <Icon type="ios-arrow-down"></Icon>
+                        </Button>
+                        <DropdownMenu slot="list">
+                            <DropdownItem>All</DropdownItem>
+                            <DropdownItem>Shell</DropdownItem>
+                            <DropdownItem>Python</DropdownItem>
+                            <DropdownItem>Go</DropdownItem>
+                            <DropdownItem>C#</DropdownItem>
+                            <DropdownItem>C</DropdownItem>
+                            <DropdownItem>JavaSript</DropdownItem>
+                            <DropdownItem>Vue</DropdownItem>
+                            <DropdownItem>HTML</DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+                    <Button type="success" style="margin-left: 10px" to="https://github.com/new">  
+                        <Icon type="ios-folder-outline" /> New
+                    </Button>
+                    <!-- 仓库列表 -->
+                    <List item-layout="vertical">
+                        <ListItem v-for="item in repos" :key="item.name">
+                            <br/>
+                            <h2><a :href=item.html_url>{{ item.name }}</a></h2>
+                            <template slot="extra">
+                                <li>
+                                    <br/> <br/>
+                                    <Button type="default" style="text-align:right">  
+                                        <p v-if="item.stargazers_count === 0"><Icon type="md-star-outline" /> star</p>
+                                        <p v-if="item.stargazers_count === 1"><Icon type="md-star" /> unstar</p>
+                                    </Button>
+                                </li>
+                            </template>
+                            <br/>
+                            <p><Icon type="md-paper-plane" /> {{item.language}}</p>
+                            <br/>
+                            <p style="font-size:10px"><Icon type="ios-time-outline" /> Updated on {{item.updated_at}}</p>
+                        </ListItem>
+                    </List>
                 </Row>
                 <!-- 展示项目 -->
                 <Row style="text-align:left" v-if="isProjects">
@@ -215,11 +272,65 @@
                </Row>
             </Col>
         </Row>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
         <!-- 底部 -->
-        <Row>
+        <Row >
             <Divider />
-            
-            <p><Icon type="logo-github"/> © 2020 GitHub, Inc.</p>
+            <Col span="1">
+            {{"&nbsp"}}
+            </Col>
+            <Col span="3">
+                <p style="text-align:left"><Icon type="logo-github"/> © 2020 GitHub, Inc.</p>
+            </Col>
+            <Col span="1">
+                <a style="font-size:10px" src="https://docs.github.com/en/free-pro-team@latest/github/site-policy/github-terms-of-service">Terms</a>
+            </Col>
+            <Col span="2">
+                <a style="font-size:10px" src="https://docs.github.com/en/free-pro-team@latest/github/site-policy/github-privacy-statement">Privacy</a>
+            </Col>
+            <Col span="2">
+                <a style="font-size:10px" src="https://github.com/security">Security</a>
+            </Col>
+            <Col span="2">
+                <a style="font-size:10px" src="https://www.githubstatus.com/">Status</a>
+            </Col>
+            <Col span="1">
+                <a style="font-size:10px" src="https://docs.github.com/en">Help</a>
+            </Col>
+            <Col span="2">
+                <a style="font-size:10px" src="https://support.github.com/">Contact GitHub</a>
+            </Col>
+            <Col span="2">
+                <a style="font-size:10px" src="https://github.com/pricing">Pricing</a>
+            </Col>
+            <Col span="1">
+                <a style="font-size:10px" src="https://docs.github.com/en">API</a>
+            </Col>
+            <Col span="2">
+                <a style="font-size:10px" src="https://services.github.com/">Training</a>
+            </Col>
+            <Col span="1">
+                <a style="font-size:10px" src="https://github.blog/">Blog</a>
+            </Col>
+            <Col span="2">
+                <a style="font-size:10px" src="https://github.com/about">About</a>
+            </Col>
+            <br/>
+            <Divider />
         </Row>
     </div>
 </template>
