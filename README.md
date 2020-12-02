@@ -4,6 +4,8 @@
 
 本仓库用来存储自己根据 `github` 官方 `API` 做的 `github` 个人主页
 
+如果您是 `TA`，请移步到 [specification](./specification.md) 进行检查，那里有更详细的设计过程
+
 ## 框架选择
 
 `Vue-cli`
