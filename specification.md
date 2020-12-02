@@ -19,7 +19,7 @@
   - [实验总结](#实验总结)
 ## 实验代码
 
-本次页面实现的代码都在下面的链接，[传送门](./myGithub/src/components/Github.vue)，请 `TA` 进行查看
+本次页面实现的代码都在下面的链接，[传送门](./myGithub/src/components/GitHub.vue)，请 `TA` 进行查看
 
 ## 实验环境
 
