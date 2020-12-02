@@ -1,5 +1,6 @@
 # Github 首页制作
 - [Github 首页制作](#github-首页制作)
+  - [博客内容分享](#博客内容分享)
   - [实验代码](#实验代码)
   - [实验环境](#实验环境)
   - [运行说明](#运行说明)
@@ -17,6 +18,11 @@
     - [中部左边](#中部左边)
     - [中部右边](#中部右边)
   - [实验总结](#实验总结)
+
+## 博客内容分享
+[传送门](https://blog.csdn.net/qq_43267773/article/details/110492909)
+[Vue-cli 搭建项目](https://blog.csdn.net/qq_43267773/article/details/110493819)
+
 ## 实验代码
 
 本次页面实现的代码都在下面的链接，[传送门](./myGithub/src/components/GitHub.vue)，请 `TA` 进行查看
