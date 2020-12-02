@@ -18,7 +18,7 @@
 
 - 进入到项目目录
 
-  `cd github_pro`
+  `cd myGithub`
 
 - 安装项目依赖
 
