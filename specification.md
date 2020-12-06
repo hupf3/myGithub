@@ -40,7 +40,7 @@
 
 - 进入到项目目录
 
-   `cd myGithub`
+   `cd myGithub/myGithub`
 
 - 安装项目依赖
 
@@ -50,7 +50,11 @@
 
   `npm run dev`
 
-- 在网页中输入 `localhost:8080` 即可查看页面（**注意**：需要将浏览器最大化，否则展示效果不好）
+- 在网页中输入 [http://localhost:8080](http://localhost:8080) 即可查看页面（**注意**：需要将浏览器最大化，否则展示效果不好，推荐浏览器 `Google Chrome`）
+
+- **注意**：运行后显示的 `github` 用户是 `hupf3` 也就是笔者自己，如果想看别人的 `github` 主页可以修改 [GitHub.vue](./myGithub/myGithub/src/components/GitHub.vue) 文件中的 `hupf3` 修改为任意用户名，示例如下：
+
+   <img src="./img/24.png" style="zoom:33%;" />
 
 ## 展示成果
 
