@@ -82,7 +82,7 @@
                         <!-- <MenuItem name="2" to="/Repositories"> -->
                         <MenuItem name="2">
                             <Icon type="ios-folder-outline" />
-                            Repositories
+                            Repositories {{user.public_repos}}
                         </MenuItem>
                         <MenuItem name="3">
                             <Icon type="ios-list-box-outline" />

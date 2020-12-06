@@ -1,4 +1,4 @@
-# myGithub
+# mygithub
 
 > A Vue.js project
 
